@@ -13,7 +13,7 @@ class LedScreen:
 	def __repr__(self):
 		return 'LED screen: ' + str(self.lines) + ' lines, ' + str(self.getWidth()) + ' px wide'
 	def clear(self):
-		for n in range(lines):
+		for n in range(self.lines):
 			self.screen[n] = ''
 	def display(self):
 		return self.screen
@@ -27,9 +27,7 @@ class LedScreen:
 		for line in pxList:
 			if len(line) > charWidth:
 				charWidth = len(line)
-		print self.getWidth()
 		if self.getWidth() != 0:
-			print 'Width = ' + str(self.getWidth())
 			for n in range(self.lines):
 				self.screen[n] += ' '
 		for n in range(self.lines):
@@ -43,11 +41,19 @@ class LedScreen:
 
 screen = LedScreen(8)
 
-text = 'Dead Beef Cafe KLM g'
+text = 'Dead Beef Cafe'
 for char in text:
 	screen.addChar(font[char])
 
 print screen
 scrLines = screen.display()
 for line in scrLines:
-	print repr(line)
+	print line
+
+screen.clear()
+for char in sorted(font):
+	screen.addChar(font[char])
+print screen
+scrLines = screen.display()
+for line in scrLines:
+	print line
