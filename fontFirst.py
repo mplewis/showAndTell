@@ -86,7 +86,52 @@ fontFirst['H'] = [\
 	'#  #',
 	'#  #']
 
-fontFirst['blank'] = [
+fontFirst['I'] = [
+	'#####',
+	'  #',
+	'  #',
+	'  #',
+	'  #',
+	'  #',
+	'#####']
+
+fontFirst['J'] = [
+	' ####',
+	'   #',
+	'   #',
+	'   #',
+	'   #',
+	'#  #',
+	' ##']
+
+fontFirst['K'] = [
+	'#  #',
+	'#  #',
+	'# #',
+	'##',
+	'# #',
+	'#  #',
+	'#  #']
+
+fontFirst['L'] = [
+	'#',
+	'#',
+	'#',
+	'#',
+	'#',
+	'#',
+	'####']
+
+fontFirst['M'] = [
+	'#   #',
+	'## ##',
+	'#####',
+	'# # #',
+	'#   #',
+	'#   #',
+	'#   #']
+
+fontFirst['N'] = [
 	'',
 	'',
 	'',
@@ -96,7 +141,7 @@ fontFirst['blank'] = [
 	'',
 	'']
 
-fontFirst['blank'] = [
+fontFirst['O'] = [
 	'',
 	'',
 	'',
@@ -106,7 +151,7 @@ fontFirst['blank'] = [
 	'',
 	'']
 
-fontFirst['blank'] = [
+fontFirst['P'] = [
 	'',
 	'',
 	'',
@@ -116,7 +161,7 @@ fontFirst['blank'] = [
 	'',
 	'']
 
-fontFirst['blank'] = [
+fontFirst['Q'] = [
 	'',
 	'',
 	'',
@@ -126,7 +171,7 @@ fontFirst['blank'] = [
 	'',
 	'']
 
-fontFirst['blank'] = [
+fontFirst['R'] = [
 	'',
 	'',
 	'',
@@ -136,7 +181,7 @@ fontFirst['blank'] = [
 	'',
 	'']
 
-fontFirst['blank'] = [
+fontFirst['S'] = [
 	'',
 	'',
 	'',
@@ -146,7 +191,7 @@ fontFirst['blank'] = [
 	'',
 	'']
 
-fontFirst['blank'] = [
+fontFirst['T'] = [
 	'',
 	'',
 	'',
@@ -156,7 +201,7 @@ fontFirst['blank'] = [
 	'',
 	'']
 
-fontFirst['blank'] = [
+fontFirst['U'] = [
 	'',
 	'',
 	'',
@@ -166,7 +211,7 @@ fontFirst['blank'] = [
 	'',
 	'']
 
-fontFirst['blank'] = [
+fontFirst['V'] = [
 	'',
 	'',
 	'',
@@ -176,7 +221,7 @@ fontFirst['blank'] = [
 	'',
 	'']
 
-fontFirst['blank'] = [
+fontFirst['W'] = [
 	'',
 	'',
 	'',
@@ -186,7 +231,7 @@ fontFirst['blank'] = [
 	'',
 	'']
 
-fontFirst['blank'] = [
+fontFirst['X'] = [
 	'',
 	'',
 	'',
@@ -196,7 +241,7 @@ fontFirst['blank'] = [
 	'',
 	'']
 
-fontFirst['blank'] = [
+fontFirst['Y'] = [
 	'',
 	'',
 	'',
@@ -206,57 +251,7 @@ fontFirst['blank'] = [
 	'',
 	'']
 
-fontFirst['blank'] = [
-	'',
-	'',
-	'',
-	'',
-	'',
-	'',
-	'',
-	'']
-
-fontFirst['blank'] = [
-	'',
-	'',
-	'',
-	'',
-	'',
-	'',
-	'',
-	'']
-
-fontFirst['blank'] = [
-	'',
-	'',
-	'',
-	'',
-	'',
-	'',
-	'',
-	'']
-
-fontFirst['blank'] = [
-	'',
-	'',
-	'',
-	'',
-	'',
-	'',
-	'',
-	'']
-
-fontFirst['blank'] = [
-	'',
-	'',
-	'',
-	'',
-	'',
-	'',
-	'',
-	'']
-
-fontFirst['blank'] = [
+fontFirst['Z'] = [
 	'',
 	'',
 	'',

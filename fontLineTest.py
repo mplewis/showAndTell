@@ -43,7 +43,7 @@ class LedScreen:
 
 screen = LedScreen(8)
 
-text = 'Dead Beef Cafe'
+text = 'Dead Beef Cafe KLM g'
 for char in text:
 	screen.addChar(font[char])
 
