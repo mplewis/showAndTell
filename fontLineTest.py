@@ -27,7 +27,8 @@ def clearScreen(numlines=100):
         # Fallback for other operating systems.
         print('\n' * rows)
 
-# LedScreen is an object that simulates an LED matrix display of specified height
+# LedScreen is an object that simulates an LED matrix display of specified
+#     height
 # Example:
 #     myScreen = LedScreen(8) # creates an LED screen of 8 vertical pixels
 # Add characters to the right side of the screen with LedScreen.addChar(char)
@@ -42,17 +43,20 @@ class LedScreen:
             self.screen.append('')
     def __repr__(self):
         """Return a string with information about the screen object."""
-        return 'LED screen: ' + str(self.lines) + ' lines, ' + str(self.getWidth()) + ' px wide'
+        return 'LED screen: ' + str(self.lines) + ' lines, ' + \
+               str(self.getWidth()) + ' px wide'
     def clear(self):
         """Clear all pixels on the screen object, setting its width to 0."""
         for n in range(self.lines):
             self.screen[n] = ''
     def display(self):
-        """Return all pixels on the screen as a list of horizontal lines of pixels."""
+        """Return all pixels on the screen as a list of horizontal lines of
+            pixels."""
         return self.screen
     def displayRange(self, start, length):
-        """Return all pixels on the screen as a list of horizontal lines of pixels,
-            starting at a specific position and ending after a specific number of pixels."""
+        """Return all pixels on the screen as a list of horizontal lines of
+           pixels, starting at a specific position and ending after a specific
+           number of pixels."""
         tempScreen = []
         end = start + length - 1
         if start >= self.getWidth():
@@ -103,7 +107,8 @@ class LedScreen:
                 toAdd += ' ' * diff
             self.screen[n] += toAdd
     def addString(self, string, font):
-        """Adds a string to the right side of the screen using a specified font."""
+        """Adds a string to the right side of the screen using a specified
+           font."""
         for char in string:
             self.addChar(font[char])
 
