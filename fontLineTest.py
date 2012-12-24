@@ -1,5 +1,6 @@
 #!/usr/bin/python2
 
+import os
 import fontFirst
 from time import sleep
 
@@ -36,9 +37,18 @@ class LedScreen:
 	def displayRange(self, start, length):
 		tempScreen = []
 		end = start + length - 1
-		for n in range(self.lines):
-			tempScreen.append(self.screen[n][start:end])
-		return tempScreen
+		if start < 0:
+			for n in range(self.lines):
+				tempScreen.append(self.screen[n][0:length - 1])
+			while start < 0:
+				for n in range(self.lines):
+					tempScreen[n] = ' ' + tempScreen[n][:len(tempScreen[n]) - 1]
+				start += 1
+			return tempScreen
+		else:
+			for n in range(self.lines):
+				tempScreen.append(self.screen[n][start:end])
+			return tempScreen
 	def getWidth(self):
 		return len(self.screen[0])
 	def addChar(self, pxList):
@@ -67,7 +77,6 @@ text = 'Dead Beef Cafe'
 for char in text:
 	screen.addChar(font[char])
 
-print screen
 scrLines = screen.display()
 for line in scrLines:
 	print line
@@ -77,17 +86,16 @@ charsToPrint = sorted(font)
 charsToPrint.remove(' ')
 for char in charsToPrint:
 	screen.addChar(font[char])
-print screen
 
-scrPos = 0
+scrPos = -80
 dispLen = 80
 
-sleep(1.0)
+sleep(0.5)
 
 while scrPos < screen.getWidth():
 	clearScreen()
 	scrLines = screen.displayRange(scrPos, dispLen)
 	for line in scrLines:
 		print line
-	sleep(0.2)
-	scrPos += dispLen
+	sleep(0.02)
+	scrPos += 1
