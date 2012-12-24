@@ -1,18 +1,21 @@
 #!/usr/bin/python2
 
+"""
+A test program to demonstrate LedScreen and scrolling text on an LED display.
+"""
+
 import os
 import sys
-import string
 import fontFirst
 from time import sleep
 
 # font is a dict of characters that can be fed into LedScreen
 # font['A'] gives you the character for capital A
-font = fontFirst.fontFirst
+FONT = fontFirst.fontFirst
 
 # clears the terminal
 # taken from https://gist.github.com/4368100
-def clearScreen(numlines=100):
+def clear_screen(numlines=100):
     """Clear the console.
 
     numlines is an optional argument used only as a fall-back.
@@ -25,7 +28,7 @@ def clearScreen(numlines=100):
         os.system('cls')
     else:
         # Fallback for other operating systems.
-        print('\n' * rows)
+        print('\n' * numlines)
 
 # LedScreen is an object that simulates an LED matrix display of specified
 #     height
@@ -39,12 +42,13 @@ class LedScreen:
         """Initialize the screen object with a specified height."""
         self.lines = lines
         self.screen = []
-        for n in range(lines):
+        while lines > 0:
             self.screen.append('')
+            lines -= 1
     def __repr__(self):
         """Return a string with information about the screen object."""
         return 'LED screen: ' + str(self.lines) + ' lines, ' + \
-               str(self.getWidth()) + ' px wide'
+               str(self.get_width()) + ' px wide'
     def clear(self):
         """Clear all pixels on the screen object, setting its width to 0."""
         for n in range(self.lines):
@@ -53,13 +57,13 @@ class LedScreen:
         """Return all pixels on the screen as a list of horizontal lines of
             pixels."""
         return self.screen
-    def displayRange(self, start, length):
+    def display_range(self, start, length):
         """Return all pixels on the screen as a list of horizontal lines of
            pixels, starting at a specific position and ending after a specific
            number of pixels."""
         tempScreen = []
         end = start + length - 1
-        if start >= self.getWidth():
+        if start >= self.get_width():
             spaces = ' ' * length
             for n in range(self.lines):
                 tempScreen.append(spaces)
@@ -82,10 +86,10 @@ class LedScreen:
             for n in range(self.lines):
                 tempScreen.append(self.screen[n][start:end])
             return tempScreen
-    def getWidth(self):
+    def get_width(self):
         """Return the screen's width in pixels."""
         return len(self.screen[0])
-    def addChar(self, pxList):
+    def add_char(self, pxList):
         """Add a character's pixels to the right side of the screen."""
         charLines = len(pxList)
         if charLines > self.lines:
@@ -94,7 +98,7 @@ class LedScreen:
         for line in pxList:
             if len(line) > charWidth:
                 charWidth = len(line)
-        if self.getWidth() != 0:
+        if self.get_width() != 0:
             for n in range(self.lines):
                 self.screen[n] += ' '
         for n in range(self.lines):
@@ -106,33 +110,33 @@ class LedScreen:
                 diff = charWidth - len(toAdd)
                 toAdd += ' ' * diff
             self.screen[n] += toAdd
-    def addString(self, string, font):
+    def add_string(self, strToAdd, font):
         """Adds a string to the right side of the screen using a specified
            font."""
-        for char in string:
-            self.addChar(font[char])
+        for char in strToAdd:
+            self.add_char(font[char])
 
 screen = LedScreen(8)
 
 if len(sys.argv) > 1:
     fullStr = sys.argv[1]
 else:
-    charsToPrint = sorted(font)
+    charsToPrint = sorted(FONT)
     charsToPrint.remove(' ')
-    fullStr = string.join(charsToPrint, '')
+    fullStr = ''.join(charsToPrint)
 
-screen.addString(fullStr, font)
+screen.add_string(fullStr, FONT)
 
 dispLen = 32
 scrStart = -dispLen
-scrEnd = screen.getWidth() + 1
+scrEnd = screen.get_width() + 1
 
 scrPos = scrStart
-scrWidth = screen.getWidth()
+scrWidth = screen.get_width()
 while scrPos < scrEnd:
-    clearScreen()
+    clear_screen()
     print scrPos, '/', scrWidth
-    scrLines = screen.displayRange(scrPos, dispLen)
+    scrLines = screen.display_range(scrPos, dispLen)
     for line in scrLines:
         print line
     sleep(0.02)
