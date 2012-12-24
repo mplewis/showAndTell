@@ -67,8 +67,11 @@ class LedScreen:
 				toAdd = pxList[n]
 			else:
 				toAdd = ''
-			while len(toAdd) < charWidth:
-				toAdd += ' '
+			#while len(toAdd) < charWidth:
+			#	toAdd += ' '
+			if len(toAdd) < charWidth:
+				diff = charWidth - len(toAdd)
+				toAdd += ' ' * diff
 			self.screen[n] += toAdd
 
 screen = LedScreen(8)
