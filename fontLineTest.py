@@ -17,6 +17,12 @@ class LedScreen:
 			self.screen[n] = ''
 	def display(self):
 		return self.screen
+	def displayRange(self, start, length):
+		tempScreen = []
+		end = start + length - 1
+		for n in range(self.lines):
+			tempScreen.append(self.screen[n][start:end])
+		return tempScreen
 	def getWidth(self):
 		return len(self.screen[0])
 	def addChar(self, pxList):
@@ -51,9 +57,17 @@ for line in scrLines:
 	print line
 
 screen.clear()
-for char in sorted(font):
+charsToPrint = sorted(font)
+charsToPrint.remove(' ')
+for char in charsToPrint:
 	screen.addChar(font[char])
 print screen
-scrLines = screen.display()
-for line in scrLines:
-	print line
+
+scrPos = 0
+dispLen = 80
+
+while scrPos < screen.getWidth():
+	scrLines = screen.displayRange(scrPos, dispLen)
+	for line in scrLines:
+		print line
+	scrPos += dispLen
