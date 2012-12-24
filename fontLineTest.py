@@ -6,8 +6,12 @@ import string
 import fontFirst
 from time import sleep
 
+# font is a dict of characters that can be fed into LedScreen
+# font['A'] gives you the character for capital A
 font = fontFirst.fontFirst
 
+# clears the terminal
+# taken from https://gist.github.com/4368100
 def clearScreen(numlines=100):
 	"""Clear the console.
 
@@ -23,20 +27,32 @@ def clearScreen(numlines=100):
 		# Fallback for other operating systems.
 		print('\n' * rows)
 
+# LedScreen is an object that simulates an LED matrix display of specified height
+# Example:
+#     myScreen = LedScreen(8) # creates an LED screen of 8 vertical pixels
+# Add characters to the right side of the screen with LedScreen.addChar(char)
+# Characters must be a list of pixels, usually from a font dict.
 class LedScreen:
+	"""An object that simulates an LED matrix display."""
 	def __init__(self, lines):
+		"""Initialize the screen object with a specified height."""
 		self.lines = lines
 		self.screen = []
 		for n in range(lines):
 			self.screen.append('')
 	def __repr__(self):
+		"""Return a string with information about the screen object."""
 		return 'LED screen: ' + str(self.lines) + ' lines, ' + str(self.getWidth()) + ' px wide'
 	def clear(self):
+		"""Clear all pixels on the screen object, setting its width to 0."""
 		for n in range(self.lines):
 			self.screen[n] = ''
 	def display(self):
+		"""Return all pixels on the screen as a list of horizontal lines of pixels."""
 		return self.screen
 	def displayRange(self, start, length):
+		"""Return all pixels on the screen as a list of horizontal lines of pixels,
+			starting at a specific position and ending after a specific number of pixels."""
 		tempScreen = []
 		end = start + length - 1
 		if start >= self.getWidth():
@@ -63,8 +79,10 @@ class LedScreen:
 				tempScreen.append(self.screen[n][start:end])
 			return tempScreen
 	def getWidth(self):
+		"""Return the screen's width in pixels."""
 		return len(self.screen[0])
 	def addChar(self, pxList):
+		"""Add a character's pixels to the right side of the screen."""
 		charLines = len(pxList)
 		if charLines > self.lines:
 			raise ValueError('Too many lines in character.')
@@ -84,22 +102,21 @@ class LedScreen:
 				diff = charWidth - len(toAdd)
 				toAdd += ' ' * diff
 			self.screen[n] += toAdd
+	def addString(self, string, font):
+		"""Adds a string to the right side of the screen using a specified font."""
+		for char in string:
+			self.addChar(font[char])
 
 screen = LedScreen(8)
-
-
-screen.clear()
-charsToPrint = sorted(font)
-charsToPrint.remove(' ')
-
 
 if len(sys.argv) > 1:
 	fullStr = sys.argv[1]
 else:
-	fullStr = text + ' ' + string.join(charsToPrint, '') + ' ' + text
+	charsToPrint = sorted(font)
+	charsToPrint.remove(' ')
+	fullStr = string.join(charsToPrint, '')
 
-for char in fullStr:
-	screen.addChar(font[char])
+screen.addString(fullStr, font)
 
 dispLen = 32
 scrStart = -dispLen
