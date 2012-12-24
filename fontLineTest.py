@@ -1,8 +1,24 @@
 #!/usr/bin/python2
 
 import fontFirst
+from time import sleep
 
 font = fontFirst.fontFirst
+
+def clearScreen(numlines=100):
+	"""Clear the console.
+
+	numlines is an optional argument used only as a fall-back.
+	"""
+	if os.name == "posix":
+		# Unix/Linux/MacOS/BSD/etc
+		os.system('clear')
+	elif os.name in ("nt", "dos", "ce"):
+		# DOS/Windows
+		os.system('cls')
+	else:
+		# Fallback for other operating systems.
+		print('\n' * rows)
 
 class LedScreen:
 	def __init__(self, lines):
@@ -66,8 +82,12 @@ print screen
 scrPos = 0
 dispLen = 80
 
+sleep(1.0)
+
 while scrPos < screen.getWidth():
+	clearScreen()
 	scrLines = screen.displayRange(scrPos, dispLen)
 	for line in scrLines:
 		print line
+	sleep(0.2)
 	scrPos += dispLen
