@@ -1,7 +1,5 @@
 #!/usr/bin/python2
 
-
-
 import math
 
 fontFirst = {}
